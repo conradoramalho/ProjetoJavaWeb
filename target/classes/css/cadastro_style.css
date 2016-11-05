@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+#process_msg_sucessfull { 
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -150px !important;
+    margin-left: -170px !important;
+}
+
+#process_msg-fail {  
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -200px !important;
+    margin-left: -260px !important
+}
+
+.modal-static,
+.modal-static .modal-dialog,
+.modal-static .modal-content {
+    width: 200px; 
+    height: 200px; 
+}
+.modal-static .modal-dialog,
+.modal-static .modal-content {
+    padding: 0 !important; 
+    margin: 0 !important;
+}
+.modal-static .modal-content .icon {
+}
+
+.process_msg .ui-dialog-titlebar {
+   display:none !important;
+}
+
+#process_msg-fail .ui-dialog-titlebar {
+   display:none !important;
+}
+
+.ui-messages.ui-widget {
+	font-size: 1.0em !important;
+}
+
+.input-new-user{
+	padding: 6px;
+
+}
+

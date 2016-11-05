@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Soa Project - Gestão Imobiliária</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+</h:head>
+
+<h:body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="main.xhtml">Soa Project</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="listar_usuarios.xhtml"><i class="fa fa-user fa-fw"></i> Usuários</a>
+                        </li>
+                        <li><a href="sobre.xhtml"><i class="fa fa-gear fa-fw"></i> Sobre</a>
+                        </li>
+                        <li class="divider"></li>
+						<h:form>
+							<li><h:commandLink action="#{CtrUsuario.LogoutUsuario()}" value="Sair" class="fa fa-sign-out fa-fw"/>
+                       		</li>
+                       </h:form>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="main.xhtml"><i class="glyphicon glyphicon-list"></i> Início</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Imóveis<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="listar_imoveis.xhtml">Buscar Imóveis</a>
+                                </li>
+                                <li>
+                                    <a href="cadastrar_imoveis.xhtml">Cadastrar Imóveis</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Clientes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="listar_clientes.xhtml">Buscar Clientes</a>
+                                </li>
+                                <li>
+                                    <a href="cadastrar_clientes.xhtml">Cadastrar Clientes</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-briefcase fa-fw"></i> Empreendimentos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="listar_empreendimentos.xhtml">Buscar Empreendimentos</a>
+                                </li>
+                                <li>
+                                    <a href="cadastrar_empreendimentos.xhtml">Cadastrar Empreendimentos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Sobre</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+				<div class="col-lg-12">
+                    <h4>Projeto desenvolvido por alunos dos cursos Sistemas de informação e Ciência da computação do 6° Semestre da universidade UNIP Swift</h4>
+					<br/>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+					<img src="images/about.jpg" class="img-responsive" alt="Imagem Responsiva"/>
+					<h5> Luiz Carlos Novaes Neto - Ciência da Computação </h5>
+			   </div>
+			   <div class="col-lg-4 col-md-6">
+					<img src="images/about.jpg" class="img-responsive" alt="Imagem Responsiva"/>
+					<h5> Conrado Ramalho de Macedo - Ciência da Computação </h5>
+			   </div>
+			   <div class="col-lg-4 col-md-6">
+					<img src="images/about.jpg" class="img-responsive" alt="Imagem Responsiva"/>
+					<h5> Bruno Henrique Costa Ramos - Sistemas de Informação </h5>
+			   </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+	
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script>
+</h:body>
+
+</html>

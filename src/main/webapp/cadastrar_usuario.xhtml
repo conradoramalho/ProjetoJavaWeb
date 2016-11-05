@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta charset="utf-8" content=""/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery.js" type="text/javascript" />
+	<script src="js/jquery.maskedinput.js" type="text/javascript" />
+
+
+	<title>Soa Project - Gestão Imobiliária</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="dist/css/sb-admin-2.css" rel="stylesheet" />
+	
+		<link href="css/cadastro_style.css" rel="stylesheet" />
+	
+
+	<!-- Custom Fonts -->
+	<link href="vendor/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css" />
+
+</h:head>
+
+<h:body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			stylec="margin-bottom: 0">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="main.xhtml">Soa Project</a>
+		</div>
+		<!-- /.navbar-header -->
+
+		<ul class="nav navbar-top-links navbar-right">
+			<!-- /.dropdown -->
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+			</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="listar_usuarios.xhtml"><i
+							class="fa fa-user fa-fw"></i> Usuários</a></li>
+					<li><a href="sobre.xhtml"><i class="fa fa-gear fa-fw"></i>
+							Sobre</a></li>
+					<li class="divider"></li>
+					<h:form>
+						<li><h:commandLink action="#{CtrUsuario.LogoutUsuario()}"
+								value="Sair" class="fa fa-sign-out fa-fw" /></li>
+					</h:form>
+				</ul> <!-- /.dropdown-user --></li>
+			<!-- /.dropdown -->
+		</ul>
+		<!-- /.navbar-top-links -->
+
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li><a href="main.xhtml"><i
+							class="glyphicon glyphicon-list"></i> Início</a></li>
+					<li><a href="#"><i class="fa fa-home fa-fw"></i> Imóves<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_imoveis.xhtml">Buscar Imóveis</a></li>
+							<li><a href="cadastrar_imoveis.xhtml">Cadastrar Imóveis</a>
+							</li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> Clientes<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_clientes.xhtml">Buscar Clientes</a></li>
+							<li><a href="cadastrar_clientes.xhtml">Cadastrar
+									Clientes</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-briefcase fa-fw"></i>
+							Empreendimentos<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_empreendimentos.xhtml">Buscar
+									Empreendimentos</a></li>
+							<li><a href="cadastrar_empreendimentos.xhtml">Cadastrar
+									Empreendimentos</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+				</ul>
+			</div>
+			<!-- /.sidebar-collapse -->
+		</div>
+		<!-- /.navbar-static-side --> </nav>
+
+		<div id="page-wrapper" style="min-height: 700px">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Cadastrar usuário</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<div class="col-sm-10 text-left">
+				<h:form id="frm" name="frm" method="post" action="">
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="lblNome">Nome :</label>
+							<h:inputText type="text" class="form-control" id="InputNome"
+								maxlength="70" pt:required="required"
+								value="#{CtrUsuario.usuario.tx_nome}" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="lblNome">Sobrenome :</label>
+							<h:inputText type="text" class="form-control" id="InputSobrenome"
+								maxlength="70" pt:required="required"
+								value="#{CtrUsuario.usuario.tx_sobrenome}" />
+						</div>
+						<div class="form-group col-md-3">
+							<label for="lblDataNascimento">Data de Nascimento :</label>
+							<h:inputText pt:type="date" styleClass="form-control"
+								name="InputDataNascimeno" id="InputDataNascimento"
+								pt:required="required"
+								values="#{CtrUsuario.usuario.dt_nascimento}" />
+						</div>
+					</div>
+					<br></br>
+					
+
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="lblNumeroRG">Número do RG :</label>
+							<p:inputText type="text" styleClass="form-control" name="InputRg" id="InputRg"
+								maxlength="12" values="#{CtrUsuario.usuario.tx_rg}" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="Numero CPF">Número do CPF :</label>
+							<p:inputMask mask="999.999.999-99" type="text"
+								styleClass="form-control" name="InputCpf" id="InputCpf" onBlur="validaCPF(this);" maxlength="14" value="#{CtrUsuario.usuario.tx_cpf}" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="Numero CPF">Número do CNPJ :</label>
+							<p:inputMask mask="99.999.999/9999-99" type="text"
+								styleClass="form-control" name="InputCpf" id="InputCnpj" maxlength="18" value="#{CtrUsuario.usuario.tx_cnpj}" />
+						</div>
+					</div>
+
+					<div class="row">
+					
+						<div class="form-group col-md-3">
+							<label for="lblCresci">Creci :</label>
+							<h:inputText type="text" class="form-control" id="InputCreci" maxlength="10" value="#{CtrUsuario.usuario.tx_creci}" />
+						</div>
+						<div class=" form-group col-md-4">
+									<label for="tx_telefone">Telefone :</label>
+									<h:inputText type="text" id="tx_telefone" value="#{CtrUsuario.usuario.tx_telefone}"	class="form-control telefone" name="tx_telefone" />
+								</div>
+								<div class=" form-group col-md-4">
+									<label for="tx_celular">Celular :</label>
+									<h:inputText type="text" id="tx_celular" value="#{CtrUsuario.usuario.tx_celular}" class="form-control telefone" name="tx_celular" />
+								</div>
+					</div>
+
+					<div id="usuario_contato_form" class="form-group"
+						style="margin-top: 3%">
+						
+						<div class="row">
+							<div class="form-group col-md-5">
+								<label for="lblEmail">Email :</label>
+								<h:inputText id="email" pt:type="email" value="#{CtrUsuario.usuario.tx_email}" class="form-control" pt:required="true"/>
+							</div>
+						
+							<div class="form-group col-md-3">
+			    					<div class="form-group">
+			    						<label for="pw1">Senha:</label>
+			    						<p:password id="pw1" name="password" value="#{CtrUsuario.usuario.tx_senha}" styleClass="form-control" pt:required="true"/>
+			    					</div>
+			    				</div>
+							<div class="form-group col-md-3">
+			    					<div class="form-group">
+			    						<label for="lblEmail">Confirmar senha:</label>
+			    						<p:password id="pw2" name="password_confirmation" styleClass="form-control" pt:required="true"/>  	
+			    					</div>
+			    				</div>	
+						</div>
+
+					
+						<div class="row">
+							<div class="form-group col-md-11">
+								<label for="lblCresci">Descrição :</label>
+								<h:inputTextarea  type="text" class="form-control" id="InputDescricao" style="resize: none; margin-bottom: 10px;"
+								rows="5" value="#{CtrUsuario.usuario.tx_descricao}" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-5 ">
+								<div class="form-group">
+									<h:commandButton id="validateBtn" value="Cadastrar"
+										class="input-new-user btn btn-lg btn-primary form-control input-sm"
+										pt:type="submit" action="#{CtrUsuario.gravarUsuarioSoaProject()}"
+										style="padding: 0px;   height: 40px;" />
+								</div>
+							</div>
+							<div class="form-group col-md-5 col-sm-offset-1">
+								<div class="form-group">
+									<h:button value="Voltar"
+										class="input-new-user btn btn-lg btn-primary form-control input-sm"
+										outcome="main" style="padding: 0px;   height: 40px;" />
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</h:form>
+			</div>
+			<!-- /.row -->
+		</div>
+	</div>
+	
+	<p:dialog id="process_msg_sucessfull" widgetVar="succesful-modal"  resizable="false" draggable="false"
+		closable="false" modal="true" position="center" styleClass=".modal-static process_msg">
+
+		<div class="modal-body">
+			<div class="text-center">
+				<img src="images/sucess-register-icon.png" class="icon" />
+				<h4>Usuário cadastrado com sucesso!</h4>
+				<h:button type="submit" value="Voltar"
+					class="input-new-user btn btn-lg btn-primary form-control input-sm"
+					outcome="main" />
+			</div>
+
+		</div>
+	</p:dialog>
+
+	<p:dialog id="process_msg-fail" widgetVar="fail-modal"
+		resizable="false" closable="false" modal="true"
+		styleClass=".modal-static process_msg" draggable="false" position="center">
+
+		<div class="modal-body">
+			<div class="text-center">
+				<img src="images/fail-sadface.png" class="icon" />
+				<h4>Usuário já cadastrado. Tente cadastrar com outro e-mail!</h4>
+				<h:button type="submit" value="Voltar"
+					class="input-new-user btn btn-lg btn-primary form-control input-sm"
+					outcome="cadastrar_usuario" />
+			</div>
+
+		</div>
+	</p:dialog>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="dist/js/sb-admin-2.js"></script>
+
+	<script src="js/jquery.maskMoney.js" type="text/javascript" />
+
+	<script src="js/jquery.maskedinput.js"></script>
+
+	<script>
+	jQuery("input.telefone")
+    .mask("(99) 9999-9999?9")
+    .focusout(function (event) {  
+        var target, phone, element;  
+        target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+        phone = target.value.replace(/\D/g, '');
+        element = $(target);  
+        element.unmask();  
+        if(phone.length > 10) {  
+            element.mask("(99) 99999-999?9");  
+        } else {  
+            element.mask("(99) 9999-9999?9");  
+        }  
+    });
+	</script>
+	
+	
+	
+	<script type="text/javascript">
+	var password = document.getElementById("frm:pw1")
+	  , confirm_password = document.getElementById("frm:pw2");
+
+	function validatePassword(){
+	  if(password.value != confirm_password.value) {
+	    confirm_password.setCustomValidity("As senhas são diferentes");
+	    return false;
+	  } else {
+	    confirm_password.setCustomValidity('');
+	    return true;
+	  }
+	}
+
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+        
+</script>
+</h:body>
+</html>

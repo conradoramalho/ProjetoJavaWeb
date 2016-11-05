@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+
+<h:head>
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css"	media="all" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	
+</h:head>
+
+<h:body>
+<div class="container">
+        <div class="row centered-form" style="margin-top: 3%;">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h2 class="panel-title"><b>Cadastra-se no SoaProject</b></h2>
+			 			</div>
+			 			<div class="panel-body" style="padding-bottom: 0px;">
+			    		<h:form id="defaultForm" pt:role="form" class="form_new_user" onsubmit="return validatePassword()">
+    						
+							<legend style="border-bottom-color: #aea8a8;">Imobiliária</legend>
+
+							<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                			<h:inputText  type="text" value="#{CtrUsuario.imobiliaria.tx_razao_social}" name="razao_social" class="form-control input-sm input-new-user" pt:placeholder="Razão Social" pt:required="true"/>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<h:inputText type="text" name="nome_fantasia" class="form-control input-sm input-new-user" pt:placeholder="Nome Fantasia" value="#{CtrUsuario.imobiliaria.tx_nome_fantasia}" pt:required="true"/>
+			    					</div>
+			    				</div>
+			    			</div>
+			    			
+			    			<div class="form-group">
+			    				<h:inputText type="text" name="logradouro"  class="form-control input-sm input-new-user" pt:placeholder="Logradouro" value="#{CtrUsuario.imobiliaria.tx_logradouro}"/>
+			    			</div>
+			    			
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <h:inputText type="text" name="bairro" class="form-control input-sm input-new-user" pt:placeholder="Bairro" value="#{CtrUsuario.imobiliaria.tx_bairro}"/>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<h:inputText type="text" name="cidade"  class="form-control input-sm input-new-user" pt:placeholder="Cidade/UF" value="#{CtrUsuario.imobiliaria.tx_cidade}"/>
+			    					</div>
+			    				</div>
+			    			</div>
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <h:inputText pt:type="url" name="site" value="#{CtrUsuario.imobiliaria.tx_site}" class="form-control input-sm input-new-user" pt:placeholder="Site"/>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<p:inputMask name="telefone" styleClass="form-control input-sm input-new-user" value="#{CtrUsuario.imobiliaria.tx_telefone}"  pt:placeholder="Telefone" mask="(99) ?9999-9999"/>
+			    					</div>
+			    				</div>
+			    			</div>
+							<legend style="border-bottom-color: #aea8a8;">Usuário</legend>
+
+							<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                			<h:inputText id="name" type="text" name="first_name" value="#{CtrUsuario.usuario.tx_nome}"  class="form-control input-sm input-new-user" pt:placeholder="Nome" pt:required="true"/>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<h:inputText pt:type="text" name="last_name" class="form-control input-sm input-new-user" pt:placeholder="Sobrenome" pt:required="true" value="#{CtrUsuario.usuario.tx_sobrenome}"/>
+			    					</div>
+			    				</div>
+			    			</div>
+
+			    			<div class="form-group ">
+			    				<h:inputText id="email" pt:type="email" value="#{CtrUsuario.usuario.tx_email}" class="form-control input-sm  input-new-user" pt:placeholder="Email" pt:required="true" />			    				
+			    			</div>
+
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<p:password id="pw1" name="password" value="#{CtrUsuario.usuario.tx_senha}" styleClass="form-control input-sm input-new-user" pt:placeholder="Senha" pt:required="true"/>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<p:password id="pw2" name="password_confirmation" styleClass="form-control input-sm input-new-user" pt:placeholder="Confirmar Senha" pt:required="true"/>  	
+			    					</div>
+			    				</div>
+			    			</div>			    			
+				    			<div class="row" style="margin-top: 5px" >
+				    				<div class="col-xs-6 col-sm-6 col-md-6">
+				    					<div class="form-group">
+				    						<h:commandButton id="validateBtn" value="Cadastrar" class="input-new-user btn btn-lg btn-primary form-control input-sm" pt:type="submit" action="#{CtrUsuario.gravarUsuario()}"/>
+				    					</div>
+				    				</div>
+				    				
+				    				<div class="col-xs-6 col-sm-6 col-md-6">
+				    					<div class="form-group">
+				    						<h:button  value="Voltar" class="input-new-user btn btn-lg btn-primary form-control input-sm" outcome="index" />
+				    					</div>
+				    				</div>
+				    			</div>			    			
+			    		</h:form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+	<p:dialog id="process_msg-fail" widgetVar="fail-modal" resizable="false"
+		closable="false" modal="true" styleClass=".modal-static process_msg">
+
+		<div class="modal-body">
+			<div class="text-center">
+				<img src="images/fail-sadface.png" class="icon" />
+				<h4>Usuário já cadastrado. Tente cadastrar com outro e-mail!</h4>
+				<h:button type="submit" value="Voltar"
+					class="input-new-user btn btn-lg btn-primary form-control input-sm" outcome="cadastrar_imobiliaria" />
+			</div>
+
+		</div>
+	</p:dialog>
+	
+	<p:dialog id="process_msg_sucessfull" widgetVar="succesful-modal" resizable="false"
+		closable="false" modal="true" styleClass=".modal-static process_msg">
+
+		<div class="modal-body">
+			<div class="text-center">
+				<img src="images/sucess-register-icon.png" class="icon" />
+				<h4>usuário cadastrado com sucesso!</h4>
+				<h:button type="submit" value="Voltar"
+					class="input-new-user btn btn-lg btn-primary form-control input-sm"
+					outcome="index" />
+			</div>
+
+		</div>
+	</p:dialog>
+
+	<script type="text/javascript">
+	var password = document.getElementById("defaultForm:pw1")
+	  , confirm_password = document.getElementById("defaultForm:pw2");
+
+	function validatePassword(){
+	  if(password.value != confirm_password.value) {
+	    confirm_password.setCustomValidity("As senhas são diferentes");
+	    return false;
+	  } else {
+	    confirm_password.setCustomValidity('');
+	    return true;
+	  }
+	}
+
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+        
+</script>
+</h:body>
+</html>

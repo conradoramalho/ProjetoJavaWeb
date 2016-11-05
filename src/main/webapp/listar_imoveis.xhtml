@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title>Soa Project - Gestão Imobiliária</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="dist/css/sb-admin-2.css" rel="stylesheet" />
+
+	<!-- Custom Fonts -->
+	<link href="vendor/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css" />
+
+</h:head>
+
+<h:body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="main.xhtml">Soa Project</a>
+		</div>
+		<!-- /.navbar-header -->
+
+		<ul class="nav navbar-top-links navbar-right">
+			<!-- /.dropdown -->
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+			</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="listar_usuarios.xhtml"><i
+							class="fa fa-user fa-fw"></i> Usuários</a></li>
+					<li><a href="sobre.xhtml"><i class="fa fa-gear fa-fw"></i>
+							Sobre</a></li>
+					<li class="divider"></li>
+					<h:form>
+						<li><h:commandLink action="#{CtrUsuario.LogoutUsuario()}"
+								value="Sair" class="fa fa-sign-out fa-fw" /></li>
+					</h:form>
+				</ul> <!-- /.dropdown-user --></li>
+			<!-- /.dropdown -->
+		</ul>
+		<!-- /.navbar-top-links -->
+
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li><a href="main.xhtml"><i
+							class="glyphicon glyphicon-list"></i> Início</a></li>
+					<li>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_imoveis.xhtml">Buscar Imóveis</a></li>
+							<li><a href="cadastrar_imoveis.xhtml">Cadastrar Imóveis</a>
+							</li>
+						</ul> <!-- /.nav-second-level -->
+					</li>
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> Clientes<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_clientes.xhtml">Buscar Clientes</a></li>
+							<li><a href="cadastrar_clientes.xhtml">Cadastrar
+									Clientes</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-briefcase fa-fw"></i>
+							Empreendimentos<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_empreendimentos.xhtml">Buscar
+									Empreendimentos</a></li>
+							<li><a href="cadastrar_empreendimentos.xhtml">Cadastrar
+									Empreendimentos</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+				</ul>
+			</div>
+			<!-- /.sidebar-collapse -->
+		</div>
+		<!-- /.navbar-static-side --> </nav>
+
+		<h:form id="formPrincipal" prependId="false">
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">Imóveis</h1>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button" class="btn btn-primary btn-lg btn-block"
+							onclick="window.location.href='cadastrar_imoveis.xhtml'">+
+							Cadastrar novo Imóvel</button>
+						<br />
+						<div class="panel panel-default">
+							<div class="panel-heading">Busca de Todos os Imóveis</div>
+							<!-- /.panel-heading -->
+							<div class="panel-body">
+								<h:dataTable var="imovel" value="#{CtrImovel.carregarImoveis()}"
+									width="100%"
+									styleClass="table table-striped table-bordered table-hover"
+									id="listaImoveis">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="ID Imovel" />
+										</f:facet>
+										<h:outputText value="#{imovel.id_imovel}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Referência" />
+										</f:facet>
+										<h:outputText value="#{imovel.tx_referencia}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Referência Alt." />
+										</f:facet>
+										<h:outputText value="#{imovel.tx_referencia_auxiliar}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Tipo" />
+										</f:facet>
+										<h:outputText value="#{imovel.tx_tipo}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Logradouro" />
+										</f:facet>
+										<h:outputText value="#{imovel.tx_logradouro}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Valor Venda" />
+										</f:facet>
+										<h:outputText value="#{imovel.tx_preco_venda}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Valor Locação" />
+										</f:facet>
+										<h:outputText value="#{imovel.tx_preco_locacao}" />
+									</h:column>
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Alterar" />
+										</f:facet>
+
+										<p:commandButton update=":frmModal" ajax="true"
+											value="Alterar" styleClass="btn btn-primary" 
+											onclick="$('#modalAlteraImovel').modal('show');"
+											>
+											<f:setPropertyActionListener value="#{imovel}"
+												target="#{CtrImovel.imovelAlterar}" />
+
+										</p:commandButton>
+
+
+									</p:column>
+								</h:dataTable>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /#page-wrapper -->
+		</h:form>
+		<!-- Modal -->
+		<div class="modal fade" id="modalAlteraImovel" role="dialog"
+			data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Alterar Imóvel</h4>
+					</div>
+
+					<h:form id="frmModal" name="frm" method="post" prependId="false">
+						<div class="modal-body col-md-11 text-left">
+
+
+
+
+							<div id="cliente_dados_form" class="form-group"
+								style="margin-top: 3%">
+
+								<div class="row">
+									<div class="form-group col-md-11 col-md-offset-1"
+										style="margin-bottom: 0px;">
+										<h4>Dados do cliente</h4>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-11 col-md-offset-1">
+										<hr style="margin-top: 0px; margin-bottom: 0px;"></hr>
+									</div>
+								</div>
+
+								<div class="row" id="div_dadosCliente">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<label for="lblCliente">Nome :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputNomeCliente" maxlength="30" pt:required="required"
+											value="#{CtrImovel.imovel.cliente.tx_nome}" readonly="true" />
+									</div>
+
+									<div class="form-group col-md-3">
+										<label for="lblIdCliente">Telefone :</label>
+										<h:inputText type="text" class="form-control"
+											pt:required="required" id="InputNumeroCliente" maxlength="30"
+											value="#{CtrImovel.imovel.cliente.tx_telefone1}"
+											readonly="true" />
+									</div>
+
+									<div class="form-group col-md-4 ">
+										<label for="lblIdCliente">E-mail:</label>
+										<h:inputText type="text" class="form-control"
+											pt:required="required" id="InputLogradouroCliente"
+											maxlength="30" value="#{CtrImovel.imovel.cliente.tx_email}"
+											readonly="true" />
+
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-11 col-md-offset-1">
+										<button type="button" class="btn btn-primary btn-lg btn-block"
+											data-toggle="modal" data-target="#ModalBuscarUsuario"
+											onclick="$('#modalAlteraImovel').modal('hide');">Alterar
+											Propietário</button>
+									</div>
+								</div>
+
+							</div>
+
+
+
+							<div id="imovel_endereco_form" class="form-group"
+								style="margin-top: 3%">
+
+								<div class="row">
+									<div class="form-group col-md-11 col-md-offset-1"
+										style="margin-bottom: 0px;">
+										<h4>Dados do Imóvel</h4>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-11 col-md-offset-1">
+										<hr style="margin-top: 0px; margin-bottom: 0px;"></hr>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-8 col-md-offset-1">
+										<label for="lblLogradouro">Logradouro :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputLogradouro" maxlength="50" pt:required="required"
+											value="#{CtrImovel.imovel.tx_logradouro}" />
+									</div>
+									<div class="form-group col-md-3">
+										<label for="lblNumero">Número :</label>
+										<h:inputText type="text" class="form-control" id="InputNumero"
+											maxlength="8" pt:required="required"
+											value="#{CtrImovel.imovel.in_numero}" />
+									</div>
+
+
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<label for="lblBairro">Bairro :</label>
+										<h:inputText type="text" class="form-control" id="InputBairro"
+											maxlength="20" pt:required="required"
+											value="#{CtrImovel.imovel.tx_bairro}" />
+									</div>
+									<div class="form-group col-md-3">
+										<label for="lblPontoReferencia">Ponto de Referencia :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputPontoReferencia" maxlength="30"
+											value="#{CtrImovel.imovel.tx_ponto_referencia}" />
+									</div>
+									<div class="form-group col-md-4">
+										<label for="lblComplemento">Complemento :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputComplemento" maxlength="30"
+											value="#{CtrImovel.imovel.tx_complemento}" />
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<label for="lblcep">Cep :</label>
+										<p:inputMask mask="99.999-999" type="text"
+											styleClass="form-control" id="InputCep" maxlength="10"
+											pt:required="required" value="#{CtrImovel.imovel.tx_cep}" />
+									</div>
+									<div class="form-group col-md-3">
+										<label for="lblCidade">Cidade :</label>
+										<h:inputText type="text" class="form-control" id="InputCidade"
+											maxlength="20" pt:required="required"
+											value="#{CtrImovel.imovel.tx_cidade}" />
+									</div>
+
+									<div class="form-group col-md-4">
+										<label for="lblEstado">Estado :</label>
+										<h:selectOneMenu id="cb_estados" styleClass="form-control"
+											pt:required="required" value="#{CtrImovel.imovel.tx_estado}">
+											<f:selectItem itemValue="#{null}" itemLabel="--Selecionar--" />
+											<f:selectItem itemValue="Acre" itemLabel="Acre" />
+											<f:selectItem itemValue="Alagoas" itemLabel="Alagoas" />
+											<f:selectItem itemValue="Amapá" itemLabel="Amapá" />
+											<f:selectItem itemValue="Amazonas" itemLabel="Amazonas" />
+											<f:selectItem itemValue="Bahia" itemLabel="Bahia" />
+											<f:selectItem itemValue="Ceará" itemLabel="Ceará" />
+											<f:selectItem itemValue="Distrito Federal"
+												itemLabel="Distrito Federal" />
+											<f:selectItem itemValue="Espírito Santo"
+												itemLabel="Espírito Santo" />
+											<f:selectItem itemValue="Goiás" itemLabel="Goiás" />
+											<f:selectItem itemValue="Maranhão" itemLabel="Maranhão" />
+											<f:selectItem itemValue="Mato Grosso" itemLabel="Mato Grosso" />
+											<f:selectItem itemValue="Mato Grosso do Sul"
+												itemLabel="Mato Grosso do Sul" />
+											<f:selectItem itemValue="Minas Gerais"
+												itemLabel="Minas Gerais" />
+											<f:selectItem itemValue="Pará" itemLabel="Pará" />
+											<f:selectItem itemValue="Paraíba" itemLabel="Paraíba" />
+											<f:selectItem itemValue="Paraná" itemLabel="Paraná" />
+											<f:selectItem itemValue="Pernambuco" itemLabel="Pernambuco" />
+											<f:selectItem itemValue="Piauí" itemLabel="Piauí" />
+											<f:selectItem itemValue="Rio de Janeiro"
+												itemLabel="Rio de Janeiro" />
+											<f:selectItem itemValue="Rio Grande do Norte"
+												itemLabel="Rio Grande do Norte" />
+											<f:selectItem itemValue="Rio Grande do Sul"
+												itemLabel="Rio Grande do Sul" />
+											<f:selectItem itemValue="Rondônia" itemLabel="Rondônia" />
+											<f:selectItem itemValue="Roraima" itemLabel="Roraima" />
+											<f:selectItem itemValue="Santa Catarina"
+												itemLabel="Santa Catarina" />
+											<f:selectItem itemValue="São Paulo" itemLabel="São Paulo" />
+											<f:selectItem itemValue="Sergipe" itemLabel="Sergipe" />
+											<f:selectItem itemValue="Tocantins" itemLabel="Tocantins" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+							</div>
+
+							<div id="imovel_dados_form" class="form-group"
+								style="margin-top: 3%">
+								<div class="row">
+
+									<div class="form-group col-md-4 col-md-offset-1">
+										<label for="lblAreaTotal">Área total :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputAreaTotal" maxlength="8"
+											value="#{CtrImovel.imovel.dl_area_total}" />
+									</div>
+									<div class="form-group col-md-3">
+										<label for="lblAreaUtil">Área útil :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputAreaUtil" maxlength="8"
+											value="#{CtrImovel.imovel.dl_area_util}" />
+									</div>
+									<div class="form-group col-md-4">
+										<label for="lblAreaTerreno">Área terreno :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputAreaTerreno" maxlength="8"
+											value="#{CtrImovel.imovel.tx_area_terreno}" />
+									</div>
+								</div>
+
+								<div class="row">
+
+									<div class="form-group col-md-4 col-md-offset-1">
+										<label for="lblAnoConstrucao">Ano construção :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputAnoConstrucao" maxlength="10"
+											value="#{CtrImovel.imovelcaptacao.in_ano_contrucao}" />
+									</div>
+									<div class="form-group col-md-3">
+										<label for="lblMaxOcupantes">Máximo ocupantes :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputMaximoOcupantes" maxlength="3"
+											value="#{CtrImovel.imovelcaptacao.in_max_ocupantes}" />
+									</div>
+									<div class="form-group col-md-4">
+										<label for="lblPrecoIptu">Preço iptu :</label>
+										<h:inputText type="text" class="form-control monetario"
+											id="InputPrecoIptu" maxlength="12"
+											value="#{CtrImovel.imovelcaptacao.tx_valor_iptu}" />
+									</div>
+								</div>
+							</div>
+
+							<div id="empreendimento_endereco_form" class="form-group"
+								style="margin-top: 3%">
+
+								<div class="row">
+									<div class="form-group col-md-11 col-md-offset-1"
+										style="margin-bottom: 0px;">
+										<h4>Detalhes do Imóvel</h4>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-11 col-md-offset-1">
+										<hr style="margin-top: 0px; margin-bottom: 0px;"></hr>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_agua}" />Água</label>
+										</div>
+									</div>
+									<div class="form-group col-md-4">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_energia}" />Energia</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_mobiliado}" />Mobiliado</label>
+										</div>
+									</div>
+
+									<div class="form-group col-md-4">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_tv_a_cabo}" />TV a
+												cabo</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+
+									<div class="form-group col-md-4 col-md-offset-1">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_internet}" />Internet</label>
+										</div>
+									</div>
+
+									<div class="form-group col-md-4">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_quadra_poliesportiva}" />Quadra
+												poliesportiva</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_piscina}" />Piscina</label>
+										</div>
+									</div>
+									<div class="form-group col-md-4">
+										<div class="checkbox-inline">
+											<label><h:selectBooleanCheckbox type="checkbox"
+													value="#{CtrImovel.imoveldetalhe.fl_gas}" />Gás</label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div id="imovel_referencias_form" class="form-group"
+								style="margin-top: 3%">
+								<div class="row">
+									<div class="form-group col-md-5 col-md-offset-1">
+										<label for="tipoImove">Tipo :</label>
+										<h:selectOneMenu id="tipo_imovel" class="form-control"
+											value="#{CtrImovel.imovel.tx_tipo}" pt:required="true">
+											<f:selectItem itemValue="#{null}" itemLabel="Selecionar" />
+											<f:selectItem itemValue="Apartamento" itemLabel="Apartamento" />
+											<f:selectItem itemValue="Casa" itemLabel="Casa" />
+											<f:selectItem itemValue="Chácara" itemLabel="Chácara" />
+											<f:selectItem itemValue="Galpão" itemLabel="Galpão" />
+											<f:selectItem itemValue="Sala comercial"
+												itemLabel="Sala comercial" />
+										</h:selectOneMenu>
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="lblLocalChave">Local da chave :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputLocalChave" maxlength="30"
+											value="#{CtrImovel.imovelcaptacao.tx_local_chave}" />
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-4 col-md-offset-1">
+										<label for="lblReferencia">Referencia :</label>
+										<h:inputText type="text" class="form-control"
+											id="InputReferencia" maxlength="10"
+											value="#{CtrImovel.imovel.tx_referencia}" />
+									</div>
+									<div class="form-group col-md-3">
+										<label class="" for="input_venda">Imóvel para Locação:</label>
+
+										<div class="input-group">
+											<span class="input-group-addon"> <h:selectBooleanCheckbox
+													type="checkbox" value="#{CtrImovel.imovel.fl_locacao}" />
+											</span>
+											<h:inputText type="text" id="InputPrecoLocacao"
+												class="form-control monetario" name="InputPrecoLocacao"
+												value="#{CtrImovel.imovel.tx_preco_locacao}" maxlength="14" />
+										</div>
+
+
+									</div>
+									<div class="form-group col-md-4">
+										<label class="" for="input_venda">Imóvel Para Venda:</label>
+
+										<div class="input-group">
+											<span class="input-group-addon"> <h:selectBooleanCheckbox
+													type="checkbox" value="#{CtrImovel.imovel.fl_venda}" />
+											</span>
+											<h:inputText type="text" id="InputPrecoVenda"
+												class="form-control monetario" name="InputPrecoVenda"
+												value="#{CtrImovel.imovel.tx_preco_venda}" maxlength="14" />
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="modal-footer">
+							<h:commandButton class="btn btn-primary" data-dismiss="modal"
+								value="Alterar" action="#{CtrImovel.alterarImovel()}" />
+						</div>
+
+
+					</h:form>
+				</div>
+
+			</div>
+		</div>
+		<!--  /modal -->
+		<!-- Modal -->
+		<div class="modal fade" id="ModalBuscarUsuario" role="dialog"
+			data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<h:form prependId="false">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Buscar Proprietário</h4>
+						</div>
+						<div class="modal-body">
+							<p:dataTable var="cliente" id="singleDT"
+								value="#{CtrCliente.carregarClientes()}" widgetVar="Clientes"
+								emptyMessage="Não foi encontrado nenhum cliente"
+								filteredValue="#{cliente}" selectionMode="single"
+								selection="#{CtrCliente.cliente}" rowKey="#{cliente.id_cliente}"
+								tableStyle="table-layout: auto;">
+
+								<p:ajax event="rowSelect"
+									listener="#{CtrCliente.atualizarProprietario}"
+									update=":frmModal:InputNomeCliente :frmModal:InputLogradouroCliente :frmModal:InputNumeroCliente" />
+
+								<p:columnGroup type="header">
+									<p:row>
+										<p:column style="border-right:0" />
+										<p:column style="border-right:0; border-left:0; "
+											headerText="Nome cliente :" />
+										<p:column colspan="3" style="border-left:0; text-align:left"
+											filterBy="#{cliente.tx_nome}" footerText="contains"
+											label="teste" filterMatchMode="contains"
+											filterStyle="width:95%; text-align:left" />
+
+									</p:row>
+									<p:row>
+										<p:column headerText="Id" style="width:5%" />
+										<p:column headerText="Nome" style="width:30%" />
+										<p:column headerText="Telefone" style="width:15%" />
+										<p:column headerText="Email" style="width:30%" />
+									</p:row>
+								</p:columnGroup>
+
+								<p:column>
+									<h:outputText value="#{cliente.id_cliente}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{cliente.tx_nome}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{cliente.tx_telefone1}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{cliente.tx_email}" />
+								</p:column>
+
+							</p:dataTable>
+						</div>
+
+						<div class="modal-footer">
+							<p:commandButton ajax="true" value="Selecionar"
+								styleClass="btn btn-primary"
+								onclick="$('#ModalBuscarUsuario').modal('hide');" title="View"
+								style="width: 33%;  margin-left: 33%; margin-right: 33%;">
+								<f:setPropertyActionListener value="#{cliente}"
+									target="#{CtrCliente.atualizarProprietario}" />
+							</p:commandButton>
+						</div>
+
+
+
+
+
+
+
+
+
+
+					</h:form>
+				</div>
+
+			</div>
+		</div>
+		<!--  /modal -->
+
+
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="dist/js/sb-admin-2.js"></script>
+</h:body>
+
+</html>

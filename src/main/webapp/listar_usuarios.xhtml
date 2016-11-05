@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title>Soa Project - Gestão Imobiliária</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="dist/css/sb-admin-2.css" rel="stylesheet" />
+
+	<!-- Custom Fonts -->
+	<link href="vendor/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css" />
+
+</h:head>
+<h:body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="main.xhtml">Soa Project</a>
+		</div>
+		<!-- /.navbar-header -->
+
+		<ul class="nav navbar-top-links navbar-right">
+			<!-- /.dropdown -->
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+			</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="listar_usuarios.xhtml"><i
+							class="fa fa-user fa-fw"></i> Usuários</a></li>
+					<li><a href="sobre.xhtml"><i class="fa fa-gear fa-fw"></i>
+							Sobre</a></li>
+					<li class="divider"></li>
+					<h:form>
+						<li><h:commandLink action="#{CtrUsuario.LogoutUsuario()}"
+								value="Sair" class="fa fa-sign-out fa-fw" /></li>
+					</h:form>
+				</ul> <!-- /.dropdown-user --></li>
+			<!-- /.dropdown -->
+		</ul>
+		<!-- /.navbar-top-links -->
+
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li><a href="main.xhtml"><i
+							class="glyphicon glyphicon-list"></i> Início</a></li>
+					<li><a href="#"><i class="fa fa-home fa-fw"></i> Imóves<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_imoveis.xhtml">Buscar Imóveis</a></li>
+							<li><a href="cadastrar_imoveis.xhtml">Cadastrar Imóveis</a>
+							</li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> Clientes<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_clientes.xhtml">Buscar Clientes</a></li>
+							<li><a href="cadastrar_clientes.xhtml">Cadastrar
+									Clientes</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-briefcase fa-fw"></i>
+							Empreendimentos<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_empreendimentos.xhtml">Buscar
+									Empreendimentos</a></li>
+							<li><a href="cadastrar_empreendimentos.xhtml">Cadastrar
+									Empreendimentos</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+				</ul>
+			</div>
+			<!-- /.sidebar-collapse -->
+		</div>
+		<!-- /.navbar-static-side --> </nav>
+
+		<h:form id="formPrincipal">
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">Usuários</h1>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button" class="btn btn-primary btn-lg btn-block"
+							onclick="window.location.href='cadastrar_usuario.xhtml'">+
+							Cadastrar novo Usuário</button>
+						<br />
+						<div class="panel panel-default">
+							<div class="panel-heading">Busca de Todos os Usuários</div>
+							<!-- /.panel-heading -->
+							<div class="panel-body">
+								<h:dataTable var="usuario"
+									value="#{CtrUsuario.carregarUsuarios()}" width="100%"
+									class="table table-striped table-bordered table-hover"
+									id="listaUsuarios">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="ID Usuario" />
+										</f:facet>
+										<h:outputText value="#{usuario.id_usuario}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Nome" />
+										</f:facet>
+										<h:outputText value="#{usuario.tx_nome}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="E-mail" />
+										</f:facet>
+										<h:outputText value="#{usuario.tx_email}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Telefone" />
+										</f:facet>
+										<h:outputText value="#{usuario.tx_telefone}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Celular" />
+										</f:facet>
+										<h:outputText value="#{usuario.tx_celular}" />
+									</h:column>
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Alterar" />
+										</f:facet>
+
+										<p:commandButton update=":frmModal" ajax="true"
+											value="Alterar" styleClass="btn btn-primary"
+											onclick="$('#modalAlteraUsuario').modal('show');"
+											title="View">
+											<f:setPropertyActionListener value="#{usuario}"
+												target="#{CtrUsuario.usuario}" />
+										</p:commandButton>
+
+
+									</p:column>
+								</h:dataTable>
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /#page-wrapper -->
+		</h:form>
+
+		<!-- Modal -->
+		<div class="modal fade" id="modalAlteraUsuario" role="dialog" data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Alterar Usuário</h4>
+					</div>
+
+					<h:form id="frmModal" name="frm" method="post" action="">
+						<div class="modal-body col-sm-12 text-left">
+							<div class="row">
+								<div class="form-group col-md-10 col-md-offset-1"
+									style="margin-bottom: 0px;">
+									<h4>Dados do Usuário</h4>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-10 col-md-offset-1">
+									<hr style="margin-top: 0px; margin-bottom: 0px;"></hr>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-5 col-md-offset-1">
+									<label for="lblNome">Nome :</label>
+									<h:inputText type="text" class="form-control" id="InputNome"
+										maxlength="70" pt:required="required"
+										value="#{CtrUsuario.usuario.tx_nome}" />
+								</div>
+								<div class="form-group col-md-5">
+									<label for="lblNome">Sobrenome :</label>
+									<h:inputText type="text" class="form-control"
+										id="InputSobrenome" maxlength="70" pt:required="required"
+										value="#{CtrUsuario.usuario.tx_sobrenome}" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-3 col-md-offset-1">
+									<label for="lblNumeroRG">Número do RG :</label>
+									<h:inputText type="text" class="form-control"
+										id="InputRG" maxlength="70" pt:required="required"
+										value="#{CtrUsuario.usuario.tx_rg}" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="Numero CPF">Número do CPF :</label>
+									<p:inputMask mask="999.999.999-99" type="text"
+										styleClass="form-control" name="InputCpf" id="InputCpf"
+										onBlur="validaCPF(this);" maxlength="14"
+										pt:required="required" value="#{CtrUsuario.usuario.tx_cpf}" />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="Numero CPF">Número do CNPJ :</label>
+									<p:inputMask mask="99.999.999/9999-99" type="text"
+										styleClass="form-control" name="InputCpf" id="InputCnpj"
+										maxlength="18" pt:required="required"
+										value="#{CtrUsuario.usuario.tx_cnpj}" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-5 col-md-offset-1">
+									<label for="lblDataNascimento">Data de Nascimento :</label>
+									<h:inputText pt:type="date" styleClass="form-control"
+										name="InputDataNascimeno" id="InputDataNascimento"
+										pt:required="required"
+										value="#{CtrUsuario.usuario.dt_nascimento}">
+										<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT-3" />
+									</h:inputText>
+								</div>
+								<div class="form-group col-md-5">
+									<label for="lblCresci">Creci :</label>
+									<h:inputText type="text" class="form-control" id="InputCreci"
+										maxlength="10" pt:required="required"
+										value="#{CtrUsuario.usuario.tx_creci}" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-10 col-md-offset-1">
+									<hr style="margin-top: 0px; margin-bottom: 0px;"></hr>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-7 col-md-offset-1">
+									<label for="lblEmail">Email :</label>
+									<h:inputText id="email" pt:type="email"
+										value="#{CtrUsuario.usuario.tx_email}" class="form-control" />
+								</div>
+
+								<div class="form-group col-md-3">
+									<label for="lblSenha">Senha :</label>
+									<h:inputText id="pw1" name="password" pt:type="password"
+										value="#{CtrUsuario.usuario.tx_senha}" class="form-control" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-10 col-md-offset-1">
+									<hr style="margin-top: 0px; margin-bottom: 0px;"></hr>
+								</div>
+							</div>
+
+
+							<div class="row">
+
+								<div class=" form-group col-md-5 col-md-offset-1">
+									<label for="tx_telefone">Telefone :</label>
+									<h:inputText type="text" id="tx_telefone"
+										value="#{CtrUsuario.usuario.tx_telefone}"
+										class="form-control telefone" name="tx_telefone" />
+								</div>
+								<div class=" form-group col-md-5">
+									<label for="tx_celular">Celular :</label>
+									<h:inputText type="text" id="tx_celular"
+										value="#{CtrUsuario.usuario.tx_celular}"
+										class="form-control telefone" name="tx_celular" />
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="form-group col-md-10 col-md-offset-1">
+									<label for="lblCresci">Descrição :</label>
+									<h:inputTextarea class="form-control " style="resize: none"
+										rows="5" id="InputDescricao" value="#{CtrUsuario.usuario.tx_descricao}" />
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<h:commandButton class="btn btn-primary" data-dismiss="modal"
+								value="Alterar" action="#{CtrUsuario.alterarUsuario()}" />
+						</div>
+					</h:form>
+				</div>
+
+			</div>
+		</div>
+		<!--  /modal -->
+
+	</div>
+
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="dist/js/sb-admin-2.js"></script>
+</h:body>
+</html>

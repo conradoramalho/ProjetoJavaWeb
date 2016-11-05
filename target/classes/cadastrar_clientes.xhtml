@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery.js" type="text/javascript" />
+	<script src="js/jquery.maskedinput.js" type="text/javascript" />
+
+
+	<title>Soa Project - Gestão Imobiliária</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="dist/css/sb-admin-2.css" rel="stylesheet" />
+		<link href="css/cadastro_style.css" rel="stylesheet" />
+	
+
+	<!-- Custom Fonts -->
+	<link href="vendor/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css" />
+
+</h:head>
+
+<h:body onload="desabilitaInput()">
+	<div id="wrapper">
+
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			stylec="margin-bottom: 0">
+
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="main.xhtml">Soa Project</a>
+		</div>
+
+		<ul class="nav navbar-top-links navbar-right">
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+			</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="listar_usuarios.xhtml"><i
+							class="fa fa-user fa-fw"></i> Usuários</a></li>
+					<li><a href="sobre.xhtml"><i class="fa fa-gear fa-fw"></i>
+							Sobre</a></li>
+					<li class="divider"></li>
+					<h:form>
+						<li><h:commandLink action="#{CtrUsuario.LogoutUsuario()}"
+								value="Sair" class="fa fa-sign-out fa-fw" /></li>
+					</h:form>
+				</ul></li>
+		</ul>
+
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li><a href="main.xhtml"><i class="glyphicon glyphicon-list"></i> Início</a></li>
+					<li><a href="#"><i class="fa fa-home fa-fw"></i> Imóves<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_imoveis.xhtml">Buscar Imóveis</a></li>
+							<li><a href="cadastrar_imoveis.xhtml">Cadastrar Imóveis</a>
+							</li>
+						</ul></li>
+					<li><a href="#"><i class="fa fa-user fa-fw"></i> Clientes<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_clientes.xhtml">Buscar Clientes</a></li>
+							<li><a href="cadastrar_clientes.xhtml">Cadastrar
+									Clientes</a></li>
+						</ul> <!-- /.nav-second-level --></li>
+					<li><a href="#"><i class="fa fa-briefcase fa-fw"></i>
+							Empreendimentos<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="listar_empreendimentos.xhtml">Buscar
+									Empreendimentos</a></li>
+							<li><a href="cadastrar_empreendimentos.xhtml">Cadastrar
+									Empreendimentos</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		</nav>
+
+		<div id="page-wrapper" style="min-height: 1000px">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Cadastrar cliente</h1>
+				</div>
+			</div>
+			<div class="col-sm-12 text-left">
+				<h:form id="frm" name="frm" method="post" prependId="false">
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="lblNomeCompleto">Nome Completo :</label>
+							<h:inputText type="text" class="form-control" id="InputNome"
+								maxlength="70" pt:required="required"
+								value="#{CtrCliente.cliente.tx_nome}" />
+						</div>
+
+						<div class="form-group col-md-4">
+							<label for="tipo_telefone1">Tipo:</label>
+							<h:selectOneMenu id="tipo_cliente" class="form-control"
+								value="#{CtrCliente.cliente.in_tipo}">
+								<f:selectItem itemValue="1" itemLabel="Proprietário" />
+								<f:selectItem itemValue="2" itemLabel="Interessado" />
+							</h:selectOneMenu>
+						</div>
+
+					</div>
+
+
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="input_rg">RG:</label>
+							<h:inputText value="#{CtrCliente.cliente.tx_rg}" maxlength="15" styleClass="form-control" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="Numero CPF">Número do CPF :</label>
+							<p:inputMask mask="999.999.999-99" type="text"
+								styleClass="form-control" name="InputCpf" id="InputCpf"
+								maxlength="14" pt:required="required"
+								value="#{CtrCliente.cliente.tx_cpf}" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="lblDataNascimento">Data de Nascimento :</label>
+							<h:inputText pt:type="date" styleClass="form-control"
+								name="InputDataNascimeno" id="InputDataNascimento"
+								pt:required="required"
+								value="#{CtrCliente.cliente.dt_nascimento}">
+								<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT-3" />
+							</h:inputText>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="lblRendaMensal">Renda Mensal :</label>
+							<h:inputText class="form-control" id="InputRenda" maxlength="12" values="#{CtrCliente.cliente.tx_renda}"/>
+						</div>
+					</div>
+
+
+					<div id="cliente_contato_form" class="form-group"
+						style="margin-top: 3%">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="lblEmail">Email :</label>
+								<h:inputText id="email" pt:type="email"
+									value="#{CtrCliente.cliente.tx_email}" class="form-control" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group">
+								<div class="form-group col-md-4">
+									<label for="tipo_telefone1">Tipo Telefone 1:</label>
+									<h:selectOneMenu id="tipo_telefone1" class="form-control"	
+										value="#{CtrCliente.cliente.in_tipo_telefone1}"
+										onchange="selecionaTipoTelefone('tipo_telefone1','tx_telefone1')">
+										<f:selectItem itemValue="#{null}" itemLabel="--Selecionar--" />
+										<f:selectItem itemValue="1" itemLabel="Residencial" />
+										<f:selectItem itemValue="2" itemLabel="Comercial" />
+										<f:selectItem itemValue="3" itemLabel="Celular" />
+									</h:selectOneMenu>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="tx_telefone3">Telefone 1:</label>
+									<h:inputText type="text" id="tx_telefone1"
+										class="form-control telefone"
+										value="#{CtrCliente.cliente.tx_telefone1}" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group">
+							<div class="form-group col-md-4">
+								<label for="tipo_telefone2">Tipo Telefone 2:</label>
+								<h:selectOneMenu id="tipo_telefone2" class="form-control"
+									value="#{CtrCliente.cliente.in_tipo_telefone2}"
+									onchange="selecionaTipoTelefone('tipo_telefone2','tx_telefone2')">
+									<f:selectItem itemValue="#{null}" itemLabel="--Selecionar--" />
+									<f:selectItem itemValue="1" itemLabel="Residencial" />
+									<f:selectItem itemValue="2" itemLabel="Comercial" />
+									<f:selectItem itemValue="3" itemLabel="Celular" />
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="tx_telefone2">Telefone 2:</label>
+								<h:inputText type="text" id="tx_telefone2"
+									class="form-control telefone"
+									value="#{CtrCliente.cliente.tx_telefone2}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group">
+							<div class="form-group col-md-4">
+								<label for="tipo_telefone3">Tipo Telefone 3:</label>
+								<h:selectOneMenu id="tipo_telefone3" class="form-control"
+									value="#{CtrCliente.cliente.in_tipo_telefone3}"
+									onchange="selecionaTipoTelefone('tipo_telefone3','tx_telefone3')">
+									<f:selectItem itemValue="#{null}" itemLabel="--Selecionar--" />
+									<f:selectItem itemValue="1" itemLabel="Residencial" />
+									<f:selectItem itemValue="2" itemLabel="Comercial" />
+									<f:selectItem itemValue="3" itemLabel="Celular" />
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="tx_telefone3">Telefone 3:</label>
+								<h:inputText type="text" id="tx_telefone3"
+									class="form-control telefone"
+									value="#{CtrCliente.cliente.tx_telefone3}"
+									name="InputTelefoneResidencial" />
+							</div>
+						</div>
+					</div>
+
+
+					<div id="cliente_endereco_form" class="form-group"
+						style="margin-top: 3%">
+
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="lblLogradouro">Logradouro :</label>
+								<h:inputText type="text" class="form-control" maxlength="30" 
+									value="#{CtrCliente.cliente.tx_logradouro}" />
+							</div>
+							<div class="form-group col-md-2">
+								<label for="lblNumero">Numero :</label>
+								<h:inputText type="number" class="form-control" 
+									maxlength="5" value="#{CtrCliente.cliente.in_numero}" />
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="lblBairro">Bairro :</label>
+								<h:inputText type="text" class="form-control" maxlength="30" required="required"
+									value="#{CtrCliente.cliente.tx_bairro}" />
+							</div>
+							<div class="form-group col-md-4">
+								<label for="lblcep">Cep :</label>
+								<p:inputMask mask="99.999-999" type="text" styleClass="form-control" value="#{CtrCliente.cliente.tx_cep}" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="lblcidade">Cidade :</label>
+								<h:inputText type="text" class="form-control" maxlength="30" values="#{ctrcliente.cliente.tx_cidade}" />
+							</div>
+							<div class="form-group col-md-4">
+								<label for="lblestado">Estado :</label>
+								<h:selectOneMenu id="cb_estados" styleClass="form-control" value="#{CtrCliente.cliente.tx_estado}">
+									<f:selectItem itemValue="#{null}" itemLabel="--Selecionar--" />
+									<f:selectItem itemValue="Acre" itemLabel="Acre"/>
+									<f:selectItem itemValue="Alagoas" itemLabel="Alagoas"/>
+									<f:selectItem itemValue="Amapá" itemLabel="Amapá"/>
+									<f:selectItem itemValue="Amazonas" itemLabel="Amazonas"/>
+									<f:selectItem itemValue="Bahia" itemLabel="Bahia"/>
+									<f:selectItem itemValue="Ceará" itemLabel="Ceará"/>
+									<f:selectItem itemValue="Distrito Federal" itemLabel="Distrito Federal"/>
+									<f:selectItem itemValue="Espírito Santo" itemLabel="Espírito Santo"/>
+									<f:selectItem itemValue="Goiás" itemLabel="Goiás"/>
+									<f:selectItem itemValue="Maranhão" itemLabel="Maranhão"/>
+									<f:selectItem itemValue="Mato Grosso" itemLabel="Mato Grosso"/>
+									<f:selectItem itemValue="Mato Grosso do Sul" itemLabel="Mato Grosso do Sul"/>
+									<f:selectItem itemValue="Minas Gerais" itemLabel="Minas Gerais"/>
+									<f:selectItem itemValue="Pará" itemLabel="Pará"/>
+									<f:selectItem itemValue="Paraíba" itemLabel="Paraíba"/>
+									<f:selectItem itemValue="Paraná" itemLabel="Paraná"/>
+									<f:selectItem itemValue="Pernambuco" itemLabel="Pernambuco"/>
+									<f:selectItem itemValue="Piauí" itemLabel="Piauí"/>
+									<f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro"/>
+									<f:selectItem itemValue="Rio Grande do Norte" itemLabel="Rio Grande do Norte"/>
+									<f:selectItem itemValue="Rio Grande do Sul" itemLabel="Rio Grande do Sul"/>
+									<f:selectItem itemValue="Rondônia" itemLabel="Rondônia"/>
+									<f:selectItem itemValue="Roraima" itemLabel="Roraima"/>
+									<f:selectItem itemValue="Santa Catarina" itemLabel="Santa Catarina"/>
+									<f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
+									<f:selectItem itemValue="Sergipe" itemLabel="Sergipe"/>
+									<f:selectItem itemValue="Tocantins" itemLabel="Tocantins"/>		
+								</h:selectOneMenu>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-4">
+								<div class="form-group">
+									<h:commandButton id="validateBtn" value="Cadastrar"
+										class="input-new-user btn btn-lg btn-primary form-control input-sm"
+										pt:type="submit" action="#{CtrCliente.gravarCliente()}"
+										style="padding: 0px;   height: 40px;" />
+								</div>
+							</div>
+							<div class="form-group col-md-4">
+								<div class="form-group">
+									<h:button value="Voltar"
+										class="input-new-user btn btn-lg btn-primary form-control input-sm"
+										outcome="main" style="padding: 0px;   height: 40px;" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</h:form>
+			</div>
+		</div>
+
+		
+	</div>
+	<p:dialog id="process_msg_sucessfull" widgetVar="succesful-modal"  resizable="false" draggable="false"
+		closable="false" modal="true" position="center" styleClass=".modal-static process_msg">
+
+		<div class="modal-body">
+			<div class="text-center">
+				<img src="images/sucess-register-icon.png" class="icon" />
+				<h4>Cliente cadastrado com sucesso!</h4>
+				<h:button type="submit" value="Voltar"
+					class="input-new-user btn btn-lg btn-primary form-control input-sm"
+					outcome="main" />
+			</div>
+
+		</div>
+	</p:dialog>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="dist/js/sb-admin-2.js"></script>
+
+	<script src="js/jquery.maskMoney.js" type="text/javascript" />
+
+	<script type="text/javascript">
+	$(function(){
+	 $(document.getElementById('InputRenda')).maskMoney({symbol:'R$ ', 
+	showSymbol:false, thousands:'', decimal:',', symbolStay: true});
+	 })
+	</script>
+
+	<script src="js/jquery.maskedinput.js"></script>
+
+	<script>
+	jQuery("input.telefone")
+    .mask("(99) 9999-9999?9")
+    .focusout(function (event) {  
+        var target, phone, element;  
+        target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+        phone = target.value.replace(/\D/g, '');
+        element = $(target);  
+        element.unmask();  
+        if(phone.length > 10) {  
+	            element.mask("(99) 99999-999?9");  
+        } else {  
+            element.mask("(99) 9999-9999?9");  
+        }  
+    });
+	</script>
+
+	<script>
+		function selecionaTipoTelefone (id_tipo_telefone, id_tx_telefone) {
+		    var selectedIndex = $(document.getElementById(id_tipo_telefone)).prop("selectedIndex");
+		    if (selectedIndex > 0) {
+		        $(document.getElementById(id_tx_telefone)).attr('disabled', false);
+		        $(document.getElementById(id_tx_telefone)).prop('required', true); 
+		    }
+		    else
+			{
+		    	$(document.getElementById(id_tx_telefone)).attr('disabled', true) ;
+		    	$(document.getElementById(id_tx_telefone)).prop('required', false) ;
+				}
+				}
+	</script>
+
+	<script type="text/javascript">
+	function desabilitaInput(){
+		$('#tx_telefone1').attr("disabled","disabled");
+		$('#tx_telefone2').attr("disabled","disabled");
+		$('#tx_telefone3').attr("disabled","disabled");
+
+		}
+	</script>
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css"	media="all" />
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+</h:head>
+
+<h:body>
+	<div class="login-container">
+		<h:form class="login-container">
+			<div class="input-container" style="margin-bottom: 15%;">
+				<img src="images/logo.png" alt="Password Icon" height="68"
+					width="240" style="margin-bottom: 15%" />
+			</div>
+
+			<div class="input-container">
+				<img src="images/user-icon.png" alt="User Icon" height="24"	width="24" /> 
+				<h:inputText value="#{CtrUsuario.usuario.tx_email}"/>
+			</div>
+			
+			<div class="input-container">
+				<img src="images/pass-icon.png" alt="Password Icon" height="24" width="24" /> 
+				<h:inputSecret value="#{CtrUsuario.usuario.tx_senha}"/>
+			</div>
+
+			<div class="input-container">
+				<h:commandButton class="login-button" value="Entrar" action="#{CtrUsuario.verificarLogin()}"/>
+				<button class="login-button" name="Cadastrar" title="Cadastra-se"> Cadastra-se </button>
+				
+			</div>
+			
+		</h:form>
+		
+		<p:dialog header="Falha no Login" widgetVar="dlg2" modal="true" height="100" dir="rtl" resizable="false"> 
+			<h:outputText value="Usuário/senha incorreta" />
+		</p:dialog>
+	</div>
+
+</h:body>
+</html>
